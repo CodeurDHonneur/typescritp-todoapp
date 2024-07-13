@@ -4,7 +4,7 @@
       <div>
         <input type="checkbox" class="toggle" />
         <label for=""> {{ todo.title }}</label>
-        <button class="destroy"></button>
+        <button class="destroy" @click="emit('delete-todo', props.todo)"></button>
       </div>
     </li>
   </div>
@@ -13,8 +13,12 @@
 <script setup lang="ts">
 import type { Todo } from '@/@types'
 
-defineProps<{
+const props = defineProps<{
   todo: Todo
+}>()
+
+const emit = defineEmits<{
+  (e: 'delete-todo', todo: Todo): void
 }>()
 </script>
 

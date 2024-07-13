@@ -3,12 +3,10 @@
     <!-- Header -->
     <TodoHeader @add-todo="addTodo" />
     <!-- Main -->
-    <TodoMain :todos="todos" />
+    <TodoMain :todos="todos" @delete-todo="deleteTodo" />
 
     <!-- Footer -->
     <TodoFooter :todos="todos" />
-
-   
   </div>
 </template>
 
@@ -22,12 +20,16 @@ import { nanoid } from 'nanoid'
 
 const todos = ref<Todo[]>([])
 
-function addTodo(value: string) {
+function addTodo(value: string): void {
   todos.value.push({
     id: nanoid(),
     title: value,
     complete: false
   })
+}
+
+function deleteTodo(todo: Todo): void {
+  todos.value = todos.value.filter((t) => t !== todo)
 }
 </script>
 
