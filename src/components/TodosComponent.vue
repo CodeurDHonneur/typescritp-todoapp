@@ -3,7 +3,11 @@
     <!-- Header -->
     <TodoHeader @add-todo="addTodo" />
     <!-- Main -->
-    <TodoMain :todos="todos" @delete-todo="deleteTodo" />
+    <TodoMain 
+    :todos="todos" 
+    @delete-todo="deleteTodo" 
+    @update-todo="updateTodo"
+    />
 
     <!-- Footer -->
     <TodoFooter :todos="todos" />
@@ -30,6 +34,10 @@ function addTodo(value: string): void {
 
 function deleteTodo(todo: Todo): void {
   todos.value = todos.value.filter((t) => t !== todo)
+}
+
+function updateTodo(todo: Todo, completedValue: boolean){
+ todo.complete = completedValue;
 }
 </script>
 
