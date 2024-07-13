@@ -7,6 +7,7 @@
         :todo="todo"
         @delete-todo="emit('delete-todo', todo)"
         @update-todo="updateTodo"
+        @edit-todo="editTodo"
       />
     </ul>
   </main>
@@ -24,10 +25,15 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'delete-todo', todo: Todo): void
   (e: 'update-todo', todo: Todo, bool: boolean): void
+  (e: 'edit-todo', todo: Todo, value: string): void
 }>()
 
-function updateTodo(todo: Todo, completedValue: boolean){
+function updateTodo(todo: Todo, completedValue: boolean) {
   emit('update-todo', todo, completedValue)
+}
+
+function editTodo(todo: Todo, editText: string) {
+  emit('edit-todo', todo, editText)
 }
 </script>
 
